@@ -34,5 +34,10 @@ public class ImmutableCollections {
         List<? extends Serializable> mixOfTypes = List.of("hello", 1, "functional", 1000L, "collection", 10f, "Not good");
     }
 
+//    @Test
+//    public void xxx() {
+//        List<? extends Serializable> mixOfTypes = List.
+//    }
+
 
 }

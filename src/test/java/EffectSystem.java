@@ -2,7 +2,6 @@ import io.vavr.concurrent.Future;
 import io.vavr.control.Either;
 import io.vavr.control.Validation;
 import org.junit.Test;
-import rx.internal.util.ExceptionsUtils;
 
 import java.util.Random;
 import java.util.concurrent.TimeoutException;
@@ -38,10 +37,11 @@ public class EffectSystem {
 
     }
 
+
     /**
      * Function that return side-effect of null
      */
-    private String getMaybeString() {
+    public static String getMaybeString() {
         if (new Random().nextBoolean()) {
             return "hello Vavr world";
         } else {
@@ -52,7 +52,7 @@ public class EffectSystem {
     /**
      * Function that return side-effect of Throwable
      */
-    private String getStringOrError() {
+    public static String getStringOrError() {
         if (new Random().nextBoolean()) {
             return "hello Vavr world";
         } else {
@@ -63,7 +63,7 @@ public class EffectSystem {
     /**
      * Function that return side-effect of alternative flow
      */
-    private Either<CacheInformation, DBInformation> getEitherString() {
+    public static Either<CacheInformation, DBInformation> getEitherString() {
         if (new Random().nextBoolean()) {
             return Right(new DBInformation("John Doe"));
         } else {
@@ -74,7 +74,7 @@ public class EffectSystem {
     /**
      * Function that return side-effect of TimeoutException
      */
-    private Future<String> getFutureOrError() {
+    public static Future<String> getFutureOrError() {
         if (new Random().nextBoolean()) {
             return Future.of(() -> "hello Vavr world");
         } else {
@@ -99,7 +99,7 @@ public class EffectSystem {
     record CacheInformation(String value) {
     }
 
-    private class CustomException extends RuntimeException {
+    public static class CustomException extends RuntimeException {
     }
 
 }
