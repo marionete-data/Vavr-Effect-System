@@ -4,18 +4,29 @@ import io.vavr.concurrent.Future;
 import io.vavr.control.Try;
 import org.junit.Test;
 
+import java.util.List;
 import java.util.Random;
 
 public class Patterns {
 
     @Test
-    public void parallelComputation() {
-
+    public void parallelComputation() throws InterruptedException {
+        Future<User> userFuture = Future.of(() -> getUser());
+        Future<Account> account = Future.of(() -> getAccount());
+        Future<UserAccount> outputFuture = Future.of(() -> new UserAccount(userFuture.get(), account.get()));
+        outputFuture.onSuccess(s -> System.out.println(s));
+        Thread.sleep(10000);
     }
 
     @Test
-    public void raceComputation() {
+    public void raceComputation() throws InterruptedException {
+        Future<String> ford = getCar("Ford");
+        Future<String> ferrari = getCar("Ferrari");
+        Future<String> toyota = getCar("Toyota");
 
+        Future<String> winner = Future.firstCompletedOf(List.of(ford, ferrari, toyota));
+        winner.onSuccess(car-> System.out.println("Winner car:" + car));
+        Thread.sleep(2000);
     }
 
     @Test

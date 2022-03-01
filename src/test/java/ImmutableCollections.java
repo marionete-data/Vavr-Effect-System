@@ -14,7 +14,7 @@ public class ImmutableCollections {
      */
     @Test
     public void append() {
-
+        List<String> hello = List.of("hello");
     }
 
 
@@ -23,7 +23,13 @@ public class ImmutableCollections {
      */
     @Test
     public void reduce() {
-
+        String s = List.of("hello", "functional", "world")
+                .map(String::toUpperCase)
+                .foldRight(new StringBuilder(), (element, acc) -> {
+                    acc.append(element);
+                    return acc;
+                }).toString();
+        System.out.println(s);
     }
 
 
@@ -33,6 +39,7 @@ public class ImmutableCollections {
     @Test
     public void filter() {
         List<? extends Serializable> mixOfTypes = List.of("hello", 1, "functional", 1000L, "collection", 10f, "Not good");
+        System.out.println(mixOfTypes.filter(type -> type instanceof String).last());
     }
 
 
