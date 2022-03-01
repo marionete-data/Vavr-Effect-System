@@ -10,6 +10,7 @@ public class ImmutableCollections {
     /**
      * Create a List with "hello" "world" elements in an immutable collection.
      * Make composition with another List that contains "!!!" String
+     * Transform the result in upperCase
      */
     @Test
     public void append() {
@@ -33,11 +34,6 @@ public class ImmutableCollections {
     public void filter() {
         List<? extends Serializable> mixOfTypes = List.of("hello", 1, "functional", 1000L, "collection", 10f, "Not good");
     }
-
-//    @Test
-//    public void xxx() {
-//        List<? extends Serializable> mixOfTypes = List.
-//    }
 
 
 }
